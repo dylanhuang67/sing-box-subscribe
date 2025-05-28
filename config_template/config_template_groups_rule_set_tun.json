@@ -116,6 +116,14 @@
       ]
     },
     {
+      "tag":"GitHub",
+      "type":"selector",
+      "outbounds":[
+        "HongKong",
+        "America"
+      ]
+    },
+    {
       "tag":"Telegram",
       "type":"selector",
       "outbounds":[
@@ -424,8 +432,12 @@
         "outbound": "OpenAI"
       },
       {
-        "rule_set": ["geosite-youtube", "geoip-google", "geosite-google", "geosite-github"],
+        "rule_set": ["geosite-youtube", "geoip-google", "geosite-google"],
         "outbound": "Google"
+      },
+      {
+        "rule_set": "geosite-github",
+        "outbound": "GitHub"
       },
       {
         "rule_set": ["geoip-telegram", "geosite-telegram"],
