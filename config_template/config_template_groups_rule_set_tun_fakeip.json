@@ -130,11 +130,8 @@
       "tag":"OpenAI",
       "type":"selector",
       "outbounds":[
-        "TaiWan",
         "Singapore",
-        "Japan",
-        "America",
-        "Others"
+        "America"
       ],
       "default": "America"
     },
@@ -148,7 +145,8 @@
         "Japan",
         "America",
         "Others"
-      ]
+      ],
+      "default": "America"
     },
     {
       "tag":"GitHub",
@@ -412,7 +410,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
-    "final": "Proxy",
+    "final": "direct",
     "rules": [
       {
         "inbound": ["tun-in", "mixed-in"],
