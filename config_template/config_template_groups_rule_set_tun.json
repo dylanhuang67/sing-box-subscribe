@@ -239,6 +239,19 @@
       ]
     },
     {
+      "tag":"Crypto",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "HongKong",
+        "Singapore",
+        "Japan",
+        "America",
+        "Others"
+      ],
+      "default": "Singapore"
+    },
+    {
       "tag":"Microsoft",
       "type":"selector",
       "outbounds":[
@@ -583,6 +596,13 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-binance",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/binance.srs",
         "download_detour": "direct"
       },
       {
