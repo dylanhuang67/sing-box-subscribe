@@ -390,7 +390,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
-    "final": "direct",
+    "final": "Proxy",
     "rules": [
       {
         "inbound": ["tun-in", "mixed-in"],
@@ -408,6 +408,28 @@
           }
         ],
         "action": "hijack-dns"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "port": 22
+          },
+          {
+            "domain": [
+              "github.com",
+              "gitlab.com",
+              "bitbucket.org",
+              "gitee.com",
+              "gitlab.io",
+              "githubusercontent.com",
+              "githubassets.com",
+              "github.io"
+            ]
+          }
+        ],
+        "outbound": "GitHub"
       },
       {
         "rule_set": "geosite-category-ads-all",
