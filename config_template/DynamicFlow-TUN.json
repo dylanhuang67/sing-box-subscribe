@@ -1,0 +1,153 @@
+{
+    "log": {
+      "level": "info",
+      "timestamp": true
+    },
+    "dns": {
+      "servers": [
+        {
+          "tag": "dns_domestic",
+          "address": "https://223.5.5.5/dns-query",
+          "detour": "direct"
+        },
+        {
+          "tag": "dns_foreign",
+          "address": "https://8.8.8.8/dns-query",
+          "detour": "PROXY"
+        },
+        {
+          "tag": "fakeip-dns",
+          "address": "fakeip"
+        }
+      ],
+      "rules": [
+        {
+          "rule_set": "geosite-proxy",
+          "server": "fakeip-dns"
+        },
+        {
+          "rule_set": "geosite-cn",
+          "server": "dns_domestic"
+        },
+        {
+          "default": true,
+          "server": "fakeip-dns"
+        }
+      ],
+      "fakeip": {
+        "enabled": true,
+        "inet4_range": "198.18.0.0/15"
+      },
+      "final": "dns_foreign"
+    },
+    "inbounds": [
+      {
+        "type": "tun",
+        "tag": "tun-in",
+        "interface_name": "tun0",
+        "inet4_address": "172.19.0.1/30",
+        "auto_route": true,
+        "stack": "gvisor",
+        "sniff": true,
+        "sniff_override_destination": true
+      }
+    ],
+  
+    // 出站配置 (已适配订阅转换工具)
+    "outbounds": [
+      // 1. 代理选择器：所有规则中指向 "PROXY" 的流量都会先经过这里
+      {
+        "type": "selector",
+        "tag": "PROXY",
+        "outbounds": [
+          "URL-Test",
+          "direct"
+        ]
+      },
+      {
+          "type": "urltest",
+          "tag": "URL-Test",
+          "outbounds": [],
+          "url": "http://www.gstatic.com/generate_204",
+          "interval": "10m"
+      },
+      {
+        "type": "direct",
+        "tag": "direct"
+      },
+      {
+        "type": "block",
+        "tag": "REJECT"
+      }
+    ],
+    "route": {
+      "rule_set": [
+        {
+          "tag": "geosite-ads",
+          "type": "remote",
+          "format": "json",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/main/generated/sing/rule_set/advertising.json",
+          "update_interval": "24h"
+        },
+        {
+          "tag": "geosite-lan",
+          "type": "remote",
+          "format": "json",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/main/generated/sing/rule_set/lan.json",
+          "update_interval": "24h"
+        },
+        {
+          "tag": "geosite-cn",
+          "type": "remote",
+          "format": "json",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/main/generated/sing/rule_set/cn.json",
+          "update_interval": "24h"
+        },
+        {
+          "tag": "geoip-cn",
+          "type": "remote",
+          "format": "json",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/main/generated/sing/rule_set/cnip.json",
+          "update_interval": "24h"
+        },
+        {
+          "tag": "geosite-proxy",
+          "type": "remote",
+          "format": "json",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/main/generated/sing/rule_set/proxy.json",
+          "update_interval": "24h"
+        }
+      ],
+      "rules": [
+        {
+          "protocol": "dns",
+          "rule_set": "geosite-proxy",
+          "outbound": "fakeip-dns" 
+        },
+        {
+          "rule_set": ["geosite-lan"],
+          "outbound": "direct"
+        },
+        {
+          "rule_set": "geosite-ads",
+          "outbound": "REJECT"
+        },
+        {
+          "rule_set": "geoip-cn",
+          "outbound": "direct"
+        },
+        {
+          "rule_set": "geosite-cn",
+          "outbound": "direct"
+        },
+        {
+          "rule_set": "geosite-proxy",
+          "outbound": "PROXY"
+        },
+        {
+          "default": true,
+          "outbound": "PROXY"
+        }
+      ]
+    }
+  }
