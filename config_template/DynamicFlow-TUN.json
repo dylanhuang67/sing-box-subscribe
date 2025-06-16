@@ -30,7 +30,6 @@
           "server": "dns_domestic"
         },
         {
-          "default": true,
           "server": "fakeip-dns"
         }
       ],
