@@ -274,6 +274,19 @@
       ]
     },
     {
+      "tag":"Crypto",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "HongKong",
+        "Singapore",
+        "Japan",
+        "America",
+        "Others"
+      ],
+      "default": "Singapore"
+    },
+    {
       "tag":"Games",
       "type":"selector",
       "outbounds":[
@@ -505,6 +518,10 @@
         "outbound": "Microsoft"
       },
       {
+        "rule_set": "geosite-binance",
+        "outbound": "Crypto"
+      },
+      {
         "rule_set": ["geosite-category-games", "geosite-dmm"],
         "outbound": "Games"
       },
@@ -681,6 +698,13 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-binance",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/binance.srs",
         "download_detour": "direct"
       },
       {
