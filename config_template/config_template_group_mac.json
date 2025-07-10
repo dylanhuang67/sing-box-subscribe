@@ -91,12 +91,6 @@
       "stack": "system",
       "auto_route": true,
       "strict_route": true
-    },
-    {
-      "tag": "mixed-in",
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 7890
     }
   ],
   "outbounds": [
