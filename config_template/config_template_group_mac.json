@@ -102,8 +102,8 @@
     {
       "tag": "OpenAI",
       "type": "selector",
-      "outbounds": ["Singapore", "America"],
-      "default": "America"
+      "outbounds": ["HongKong", "TaiWan", "Singapore", "Japan", "America"],
+      "default": "HongKong"
     },
     {
       "tag": "Google",
@@ -114,7 +114,7 @@
     {
       "tag": "GitHub",
       "type": "selector",
-      "outbounds": ["HongKong", "America"]
+      "outbounds": ["HongKong", "TaiWan", "Singapore", "Japan", "America"]
     },
     {
       "tag": "Telegram",
