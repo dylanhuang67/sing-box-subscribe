@@ -115,9 +115,11 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 9000,
       "stack": "mixed",
       "auto_route": true,
       "strict_route": true,
+      "endpoint_independent_nat": true,
       "sniff": true,
       "sniff_override_destination": true,
       "platform": {
@@ -433,9 +435,10 @@
       "filter":[
         {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效"]}
       ],
-      "url": "http://www.gstatic.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
-      "tolerance": 50
+      "tolerance": 50,
+      "interrupt_exist_connections": false
     },
     {
       "type": "direct",
