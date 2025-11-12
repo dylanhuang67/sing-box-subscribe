@@ -23,23 +23,21 @@
   "dns": {
     "servers": [
       {
-        "tag": "dns-local",
-        "type": "local"
+        "tag": "google",
+        "type": "tls",
+        "server": "8.8.8.8",
+        "detour": "Proxy"
       },
       {
-        "tag": "dns-direct",
+        "tag": "local",
         "type": "https",
-        "server": "223.5.5.5",
-        "path": "/dns-query",
-        "domain_resolver": "dns-local",
-        "detour": "direct"
+        "server": "223.5.5.5"
       },
       {
-        "tag": "dns-remote",
-        "type": "https",
-        "server": "dns.google",
-        "path": "/dns-query",
-        "domain_resolver": "dns-direct"
+        "tag": "fakeip",
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
