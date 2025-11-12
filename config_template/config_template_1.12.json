@@ -837,8 +837,7 @@
       }
     ],
     "default_domain_resolver": {
-      "server": "dns-direct",
-      "strategy": "ipv4_only"
+      "server": "local"
     }
   }
 }
