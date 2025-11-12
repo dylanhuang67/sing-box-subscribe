@@ -24,8 +24,7 @@
     "servers": [
       {
         "tag": "dns-local",
-        "type": "local",
-        "detour": "direct"
+        "type": "local"
       },
       {
         "tag": "dns-direct",
