@@ -316,6 +316,7 @@
       { "rule_set": ["geosite-youtube", "geoip-google", "geosite-google"], "outbound": "Google" },
       { "rule_set": "geosite-github", "outbound": "GitHub" },
       { "rule_set": ["geoip-telegram", "geosite-telegram"], "outbound": "Telegram" },
+      { "domain_suffix": [".x.com", ".twitter.com", ".twimg.com", ".t.co"], "outbound": "Twitter" },
       { "rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "Twitter" },
       { "rule_set": ["geoip-facebook", "geosite-facebook"], "outbound": "Facebook" },
       { "rule_set": "geosite-bilibili", "outbound": "BiliBili" },
